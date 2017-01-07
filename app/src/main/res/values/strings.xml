@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">GoogleTrainingDisplayingBitmapsEfficiently</string>
+    <string name="processing_bitmaps_off_the_ui_thread">Processing Bitmaps Off the UI Thread</string>
 </resources>

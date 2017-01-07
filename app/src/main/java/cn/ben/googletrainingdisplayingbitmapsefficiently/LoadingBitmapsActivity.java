@@ -1,8 +1,10 @@
 package cn.ben.googletrainingdisplayingbitmapsefficiently;
 
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -33,5 +35,9 @@ public class LoadingBitmapsActivity extends AppCompatActivity {
         Toast.makeText(this, "imageHeight: " + imageHeight
                 + "\nimageWidth: " + imageWidth
                 + "\nimageType: " + imageType, Toast.LENGTH_SHORT).show();
+    }
+
+    public void jump(@SuppressWarnings("UnusedParameters") View view) {
+        startActivity(new Intent(this, OffUIThreadActivity.class));
     }
 }
