@@ -17,6 +17,8 @@
         </activity>
         <activity android:name=".OffUIThreadActivity">
         </activity>
+        <activity android:name=".MemoryCachingBitmapsActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -2,25 +2,19 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_off_uithread"
+    android:id="@+id/activity_caching_bitmaps"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="cn.ben.googletrainingdisplayingbitmapsefficiently.OffUIThreadActivity">
+    tools:context="cn.ben.googletrainingdisplayingbitmapsefficiently.MemoryCachingBitmapsActivity">
 
     <ImageView
         android:id="@+id/iv_display"
         android:layout_width="100px"
         android:layout_height="100px"
         tools:ignore="ContentDescription,PxUsage"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/caching_bitmaps"
-        android:onClick="jump1"/>
 
 </RelativeLayout>

@@ -1,5 +1,6 @@
 package cn.ben.googletrainingdisplayingbitmapsefficiently;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -8,6 +9,7 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageView;
 
 import java.lang.ref.WeakReference;
@@ -26,6 +28,10 @@ public class OffUIThreadActivity extends AppCompatActivity {
         if (mPlaceHolderBitmap == null)
             mPlaceHolderBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
         loadBitmap(R.drawable.myimage, (ImageView) findViewById(R.id.iv_display));
+    }
+
+    public void jump1(@SuppressWarnings("UnusedParameters") View view) {
+        startActivity(new Intent(this, MemoryCachingBitmapsActivity.class));
     }
 
     class BitmapWorkerTask extends AsyncTask<Integer, Void, Bitmap> {
@@ -92,7 +98,7 @@ public class OffUIThreadActivity extends AppCompatActivity {
         private final WeakReference<BitmapWorkerTask> bitmapWorkerTaskReference;
 
         AsyncDrawable(Resources res, Bitmap bitmap,
-                             BitmapWorkerTask bitmapWorkerTask) {
+                      BitmapWorkerTask bitmapWorkerTask) {
             super(res, bitmap);
             bitmapWorkerTaskReference =
                     new WeakReference<>(bitmapWorkerTask);
