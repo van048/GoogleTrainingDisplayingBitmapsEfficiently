@@ -31,7 +31,7 @@ public class OffUIThreadActivity extends AppCompatActivity {
     }
 
     public void jump1(@SuppressWarnings("UnusedParameters") View view) {
-        startActivity(new Intent(this, MemoryCachingBitmapsActivity.class));
+        startActivity(new Intent(this, CachingBitmapsActivity.class));
     }
 
     class BitmapWorkerTask extends AsyncTask<Integer, Void, Bitmap> {
