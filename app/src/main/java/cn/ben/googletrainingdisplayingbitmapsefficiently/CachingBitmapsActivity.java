@@ -8,6 +8,8 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.util.LruCache;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
@@ -46,14 +48,20 @@ public class CachingBitmapsActivity extends AppCompatActivity {
         final int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
         // Use 1/8th of the available memory for this memory cache.
         final int cacheSize = maxMemory / 8;
-        mMemoryCache = new LruCache<String, Bitmap>(cacheSize) {
-            @Override
-            protected int sizeOf(String key, Bitmap bitmap) {
-                // The cache size will be measured in kilobytes rather than
-                // number of items.
-                return bitmap.getByteCount() / 1024;
-            }
-        };
+        RetainFragment retainFragment =
+                RetainFragment.findOrCreateRetainFragment(getSupportFragmentManager());
+        mMemoryCache = retainFragment.mRetainedCache;
+        if (mMemoryCache == null) {
+            mMemoryCache = new LruCache<String, Bitmap>(cacheSize) {
+                @Override
+                protected int sizeOf(String key, Bitmap bitmap) {
+                    // The cache size will be measured in kilobytes rather than
+                    // number of items.
+                    return bitmap.getByteCount() / 1024;
+                }
+            };
+            retainFragment.mRetainedCache = mMemoryCache;
+        }
 
         // Initialize disk cache on background thread
         File cacheDir = getDiskCacheDir(this, DISK_CACHE_SUB_DIR);
@@ -214,5 +222,28 @@ public class CachingBitmapsActivity extends AppCompatActivity {
                         context.getCacheDir().getPath();
 
         return new File(cachePath + File.separator + uniqueName);
+    }
+
+    public static class RetainFragment extends Fragment {
+        private static final String TAG = "RetainFragment";
+        public LruCache<String, Bitmap> mRetainedCache;
+
+        public RetainFragment() {
+        }
+
+        public static RetainFragment findOrCreateRetainFragment(FragmentManager fm) {
+            RetainFragment fragment = (RetainFragment) fm.findFragmentByTag(TAG);
+            if (fragment == null) {
+                fragment = new RetainFragment();
+                fm.beginTransaction().add(fragment, TAG).commit();
+            }
+            return fragment;
+        }
+
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setRetainInstance(true);
+        }
     }
 }
