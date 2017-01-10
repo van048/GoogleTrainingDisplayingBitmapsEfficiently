@@ -1,17 +1,18 @@
 package cn.ben.googletrainingdisplayingbitmapsefficiently;
 
+import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 
 @SuppressWarnings("WeakerAccess")
-public class LowerAndroidRecyclableBitmap {
-    private Bitmap mBitmap = null;
+public class LowerAndroidRecyclableBitmap extends BitmapDrawable {
     private int mCacheRefCount = 0;
     private int mDisplayRefCount = 0;
     private boolean mHasBeenDisplayed = false;
 
     // TODO: 2017/1/10  
-    public LowerAndroidRecyclableBitmap(Bitmap bitmap) {
-        mBitmap = bitmap;
+    public LowerAndroidRecyclableBitmap(Resources resources, Bitmap bitmap) {
+        super(resources, bitmap);
     }
 
     // TODO: 2017/1/10 Notify the drawable??
@@ -56,10 +57,6 @@ public class LowerAndroidRecyclableBitmap {
     private synchronized boolean hasValidBitmap() {
         Bitmap bitmap = getBitmap();
         return bitmap != null && !bitmap.isRecycled();
-    }
-
-    private Bitmap getBitmap() {
-        return mBitmap;
     }
 
 }
