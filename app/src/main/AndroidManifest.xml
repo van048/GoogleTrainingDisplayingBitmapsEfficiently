@@ -21,6 +21,8 @@
         </activity>
         <activity android:name=".ImageDetailActivity">
         </activity>
+        <activity android:name=".ImageGridActivity">
+        </activity>
     </application>
 
 </manifest>

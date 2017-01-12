@@ -114,7 +114,7 @@ public class CachingBitmapsActivity extends AppCompatActivity {
     }
 
     public void jump2(@SuppressWarnings("UnusedParameters") View view) {
-        startActivity(new Intent(this, ImageDetailActivity.class));
+        startActivity(new Intent(this, ImageGridActivity.class));
     }
 
     class BitmapWorkerTask extends AsyncTask<Integer, Void, Bitmap> {

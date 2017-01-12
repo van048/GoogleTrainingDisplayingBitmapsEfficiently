@@ -17,7 +17,6 @@ import static cn.ben.googletrainingdisplayingbitmapsefficiently.BitmapUtil.decod
 
 public class ImageDetailActivity extends AppCompatActivity {
 
-    // TODO: 2017/1/12  
     public static final String EXTRA_IMAGE = "extra_image";
 
     @SuppressWarnings("FieldCanBeLocal")
@@ -58,6 +57,9 @@ public class ImageDetailActivity extends AppCompatActivity {
         mAdapter = new ImagePagerAdapter(getSupportFragmentManager(), imageResIds.length);
         mPager = (ViewPager) findViewById(R.id.pager);
         mPager.setAdapter(mAdapter);
+
+        int initPos = getIntent().getIntExtra(EXTRA_IMAGE, 0);
+        mPager.setCurrentItem(initPos);
     }
 
     public static class ImagePagerAdapter extends FragmentStatePagerAdapter {
