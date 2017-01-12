@@ -17,4 +17,10 @@
         android:layout_height="100px"
         tools:ignore="ContentDescription,PxUsage"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/image_detail_activity"
+        android:onClick="jump2"/>
+
 </RelativeLayout>

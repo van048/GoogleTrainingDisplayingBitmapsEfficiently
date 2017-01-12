@@ -2,4 +2,5 @@
     <string name="app_name">GoogleTrainingDisplayingBitmapsEfficiently</string>
     <string name="processing_bitmaps_off_the_ui_thread">Processing Bitmaps Off the UI Thread</string>
     <string name="caching_bitmaps">Caching Bitmaps</string>
+    <string name="image_detail_activity">ImageDetailActivity</string>
 </resources>

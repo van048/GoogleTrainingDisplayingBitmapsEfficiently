@@ -1,6 +1,7 @@
 package cn.ben.googletrainingdisplayingbitmapsefficiently;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -12,6 +13,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.util.LruCache;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.jakewharton.disklrucache.DiskLruCache;
@@ -109,6 +111,10 @@ public class CachingBitmapsActivity extends AppCompatActivity {
             BitmapWorkerTask task = new BitmapWorkerTask(imageView);
             task.execute(resId);
         }
+    }
+
+    public void jump2(@SuppressWarnings("UnusedParameters") View view) {
+        startActivity(new Intent(this, ImageDetailActivity.class));
     }
 
     class BitmapWorkerTask extends AsyncTask<Integer, Void, Bitmap> {
